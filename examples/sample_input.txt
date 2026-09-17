@@ -1,0 +1,26 @@
+Photosynthesis is defined as the process by which green plants, algae, and
+some bacteria convert light energy into chemical energy stored in glucose.
+Chlorophyll, the pigment found in chloroplasts, absorbs sunlight and drives
+the reaction. Photosynthesis produces oxygen as a byproduct, which is
+released into the atmosphere. The overall process can be summarized by the
+equation: carbon dioxide plus water, in the presence of light, yields
+glucose and oxygen. Most life on Earth ultimately depends on photosynthesis
+for energy and breathable air.
+
+Cellular respiration refers to the set of metabolic reactions that convert
+the chemical energy stored in glucose into adenosine triphosphate, or ATP.
+Mitochondria are the organelles primarily responsible for cellular
+respiration in eukaryotic cells. Cellular respiration consumes the oxygen
+produced by photosynthesis and releases carbon dioxide as a byproduct,
+forming a natural cycle between plants and animals. Aerobic respiration is
+far more efficient at producing ATP than anaerobic fermentation. Without
+functioning mitochondria, most complex cells could not generate enough
+energy to survive.
+
+Enzymes are proteins that act as biological catalysts, speeding up chemical
+reactions without being consumed themselves. Enzymes are defined as highly
+specific molecules, each shaped to bind a particular substrate at its
+active site. Temperature and pH strongly influence enzyme activity, and
+extreme conditions can denature an enzyme, destroying its function.
+Enzymes lower the activation energy required for a reaction to proceed,
+which allows metabolic processes to occur quickly at body temperature.
