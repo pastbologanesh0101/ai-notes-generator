@@ -150,6 +150,27 @@ examples/sample_output.md
 .github/workflows/tests.yml
 ```
 
+## Troubleshooting / FAQ
+
+**"Error reading input.txt: not valid UTF-8 text"** — the tool only reads
+plain-text UTF-8 files. This usually means you pointed it at a PDF, Word
+doc, or other binary file. Export/copy the text to a `.txt` file first
+(e.g. `pdftotext lecture.pdf lecture.txt`).
+
+**My headings look wrong or nonsensical (e.g. two unrelated words stuck
+together).** Heading generation only runs on sections that don't already
+have a markdown `#` heading. If your source text has natural section
+breaks, add `#`/`##` headings yourself — segmentation and heading
+generation are skipped entirely for headed sections, which is usually more
+reliable than the automatic topic-shift heuristic on short or unusual text.
+
+**Why didn't `<term>` show up in the glossary?** Glossary extraction only
+picks up two signals: (1) explicit definitional phrasing like `"X is
+defined as ..."` / `"X refers to ..."` / `"X is a/an ..."`, and (2)
+capitalized terms that recur at least twice. A term mentioned once, in
+lowercase, or phrased differently (e.g. `"X means ..."`) won't be detected
+— this is a pattern-based heuristic, not a language model.
+
 ## Limitations
 
 This is a from-scratch classical-NLP implementation, not a language model.
