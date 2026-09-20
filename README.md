@@ -1,5 +1,9 @@
 # AI Notes Generator
 
+[![tests](https://github.com/pastbologanesh0101/ai-notes-generator/actions/workflows/tests.yml/badge.svg)](https://github.com/pastbologanesh0101/ai-notes-generator/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue.svg)](.github/workflows/tests.yml)
+
 Turn plain-text lectures, articles, or textbook chapters into structured,
 hierarchical Markdown study notes — headings, extractive bullet points, and
 a glossary of key terms.
@@ -12,6 +16,17 @@ This is distinct from a meeting-transcript summarizer: the input here is
 general lecture/article/chapter prose, and the output is hierarchical study
 notes (sections → bullets → glossary), not a list of decisions or action
 items.
+
+## Table of contents
+
+- [How it works](#how-it-works)
+- [Usage](#usage)
+- [Example](#example)
+- [Running the tests](#running-the-tests)
+- [Project layout](#project-layout)
+- [Troubleshooting / FAQ](#troubleshooting--faq)
+- [Limitations](#limitations)
+- [License](#license)
 
 ## How it works
 
