@@ -180,7 +180,28 @@ class TestMarkdownOutput(unittest.TestCase):
         self.assertIn("No content available", markdown_whitespace)
 
 
+class TestGlossaryMaxTerms(unittest.TestCase):
+    def test_glossary_respects_max_terms_cap(self):
+        # Fifteen distinct, individually-repeated capitalized terms should
+        # still yield no more than `max_terms` glossary entries.
+        sentences = []
+        for i in range(15):
+            term = f"Protocol{i}"
+            sentences.append(f"{term} is a networking standard. {term} is widely deployed.")
+        text = " ".join(sentences)
+        glossary = ng.extract_glossary(text, max_terms=5)
+        self.assertLessEqual(len(glossary), 5)
+
+
 class TestCLI(unittest.TestCase):
+    def test_cli_wrong_argument_count_prints_usage_and_fails(self):
+        result = ng.main(["only_one_arg.txt"])
+        self.assertEqual(result, 1)
+
+    def test_cli_missing_input_file_reports_error(self):
+        result = ng.main(["/nonexistent/path/does-not-exist.txt", "/tmp/whatever-output.md"])
+        self.assertEqual(result, 1)
+
     def test_cli_writes_output_file(self):
         import subprocess
         import tempfile
