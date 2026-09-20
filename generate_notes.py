@@ -551,13 +551,42 @@ def generate_notes(text: str, title: str = "Study Notes") -> str:
 # --------------------------------------------------------------------------
 
 
+def _parse_args(argv: List[str]) -> Optional[Tuple[str, str, str]]:
+    """Parse CLI args, returning (input_path, output_path, title) or None
+    if the arguments are invalid."""
+    title = "Study Notes"
+    positional: List[str] = []
+    i = 0
+    while i < len(argv):
+        arg = argv[i]
+        if arg == "--title":
+            if i + 1 >= len(argv):
+                return None
+            title = argv[i + 1]
+            i += 2
+        elif arg.startswith("--title="):
+            title = arg.split("=", 1)[1]
+            i += 1
+        else:
+            positional.append(arg)
+            i += 1
+
+    if len(positional) != 2 or not title.strip():
+        return None
+    return positional[0], positional[1], title
+
+
 def main(argv: Optional[List[str]] = None) -> int:
     argv = argv if argv is not None else sys.argv[1:]
-    if len(argv) != 2:
-        print("Usage: python generate_notes.py <input.txt> <output.md>", file=sys.stderr)
+    parsed = _parse_args(argv)
+    if parsed is None:
+        print(
+            "Usage: python generate_notes.py <input.txt> <output.md> [--title \"My Title\"]",
+            file=sys.stderr,
+        )
         return 1
 
-    input_path, output_path = argv
+    input_path, output_path, title = parsed
     try:
         with open(input_path, "r", encoding="utf-8") as f:
             text = f.read()
@@ -573,7 +602,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         )
         return 1
 
-    notes = generate_notes(text)
+    notes = generate_notes(text, title=title)
 
     try:
         with open(output_path, "w", encoding="utf-8") as f:

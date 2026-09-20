@@ -55,10 +55,14 @@ items.
 
 ```bash
 python generate_notes.py input.txt output.md
+python generate_notes.py input.txt output.md --title "Chapter 4 Notes"
 ```
 
 Reads plain text from `input.txt` and writes structured Markdown notes to
 `output.md`. No dependencies beyond the Python standard library.
+
+The optional `--title "My Title"` flag sets the `# ` heading at the top of
+the generated document (default: `Study Notes`).
 
 ## Example
 

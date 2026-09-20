@@ -239,6 +239,25 @@ class TestCLI(unittest.TestCase):
                 content = f.read()
             self.assertIn("## Topic", content)
 
+    def test_cli_title_flag_sets_document_title(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            input_path = os.path.join(tmpdir, "input.txt")
+            output_path = os.path.join(tmpdir, "output.md")
+            with open(input_path, "w", encoding="utf-8") as f:
+                f.write("# Topic\nA short section with a couple of sentences here.\n")
+
+            result = ng.main([input_path, output_path, "--title", "Custom Title"])
+            self.assertEqual(result, 0)
+            with open(output_path, "r", encoding="utf-8") as f:
+                content = f.read()
+            self.assertTrue(content.startswith("# Custom Title"))
+
+    def test_cli_title_flag_missing_value_is_rejected(self):
+        result = ng.main(["input.txt", "output.md", "--title"])
+        self.assertEqual(result, 1)
+
 
 if __name__ == "__main__":
     unittest.main()
