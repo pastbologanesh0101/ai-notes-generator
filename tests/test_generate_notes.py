@@ -202,6 +202,18 @@ class TestCLI(unittest.TestCase):
         result = ng.main(["/nonexistent/path/does-not-exist.txt", "/tmp/whatever-output.md"])
         self.assertEqual(result, 1)
 
+    def test_cli_non_utf8_input_reports_friendly_error(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            input_path = os.path.join(tmpdir, "binary.txt")
+            output_path = os.path.join(tmpdir, "output.md")
+            with open(input_path, "wb") as f:
+                f.write(b"\xff\xfe\x00\x01not valid utf-8")
+            result = ng.main([input_path, output_path])
+            self.assertEqual(result, 1)
+            self.assertFalse(os.path.exists(output_path))
+
     def test_cli_writes_output_file(self):
         import subprocess
         import tempfile

@@ -564,6 +564,14 @@ def main(argv: Optional[List[str]] = None) -> int:
     except OSError as exc:
         print(f"Error reading {input_path}: {exc}", file=sys.stderr)
         return 1
+    except UnicodeDecodeError as exc:
+        print(
+            f"Error reading {input_path}: not valid UTF-8 text ({exc}). "
+            "This tool expects a plain-text (.txt) file, not a binary or "
+            "differently-encoded document.",
+            file=sys.stderr,
+        )
+        return 1
 
     notes = generate_notes(text)
 
